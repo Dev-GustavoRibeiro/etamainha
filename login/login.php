@@ -37,6 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" href="../icons/icon-logo.png" type="image/png">
     <link rel="stylesheet" href="../css/login.css">
 </head>
+    <header class="header d-flex justify-content-between align-items-center">
+        <a href="../index.php">
+            <img src="../images/logo.jpeg" alt="Logo da Empresa" style="height: 100px;">
+        </a>
+
+    </header>
+
 <body>
     <div class="login-container">
         <div class="login-box">
