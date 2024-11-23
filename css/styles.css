@@ -245,7 +245,7 @@ main {
 /* Responsividade */
 @media (max-width: 480px) {
     .header .logo img {
-        max-height: 40px;
+        max-height: 80px;
     }
 
     .header .icons img {
