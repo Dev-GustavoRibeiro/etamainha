@@ -55,7 +55,6 @@ $carrinho = $_SESSION['carrinho'];
 </head>
 <body>
     <header class="header d-flex justify-content-between align-items-center p-3 bg-dark text-white">
-        <h1>Carrinho de Compras</h1>
         <a href="../index.php" class="btn btn-secondary">Voltar para Loja</a>
         <a href="../index.php" class="btn btn-secondary">Voltar para Loja</a>
     <div class="logo text-center">
