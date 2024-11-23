@@ -41,7 +41,7 @@ main {
 }
 
 .header .logo img {
-    max-height: 200px;
+    max-height: 60px;
 }
 
 .header .icons a {
