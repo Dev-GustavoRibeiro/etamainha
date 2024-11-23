@@ -22,7 +22,7 @@ main {
 /* Cabeçalho */
 .header {
     background: linear-gradient(200deg, #3b261b, #a85f38);
-    padding: 20px 0;
+    padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -30,7 +30,7 @@ main {
     justify-content: center;
     align-items: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
+    height: 100px; /* Ajuste fixo do tamanho do cabeçalho */
 }
 
 .header .logo {
@@ -41,18 +41,21 @@ main {
 }
 
 .header .logo img {
-    max-height: 120px;
+    max-height: 80px; /* Ajuste da altura da logo */
+    height: auto;
+    width: auto;
     transition: max-height 0.3s ease;
 }
 
 .header .btn-secondary {
     position: absolute;
-    right: 20px;
+    right: 10px;
     background: #af6949;
     color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
+    font-size: 0.9rem;
     transition: background-color 0.3s ease;
 }
 
@@ -161,31 +164,30 @@ main {
 /* Responsividade */
 @media (max-width: 768px) {
     .header {
-        padding: 15px 0;
+        height: 80px; /* Reduz altura do cabeçalho */
     }
 
     .header .logo img {
-        max-height: 80px;
+        max-height: 60px; /* Reduz tamanho da logo */
     }
 
     .header .btn-secondary {
+        font-size: 0.8rem;
         padding: 8px 12px;
-        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
     .header {
-        flex-direction: column;
-        padding: 10px 0;
+        height: 70px; /* Reduz altura do cabeçalho ainda mais */
     }
 
     .header .logo img {
-        max-height: 60px;
+        max-height: 50px; /* Reduz tamanho da logo ainda mais */
     }
 
     .header .btn-secondary {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         padding: 6px 10px;
     }
 }
