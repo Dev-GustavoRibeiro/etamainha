@@ -243,30 +243,29 @@ main {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+@media (max-width: 480px) {
+    .header .logo img {
+        max-height: 40px;
     }
 
-    .catalog h1 {
-        font-size: 1.8rem;
+    .header .icons img {
+        max-height: 25px;
     }
 
-    form input {
-        max-width: 300px;
+    .menu-links li {
+        font-size: 1rem;
+    }
+
+    .social-icons a img {
+        width: 20px;
+        height: 20px;
     }
 
     .card img {
-        height: 200px; /* Ajuste menor para telas pequenas */
+        height: 200px;
     }
 
-    .carousel-inner img {
-        height: 300px; /* Ajuste menor para imagens no carrossel */
-    }
-
-    .side-menu {
-        width: 80%;
+    form input {
+        max-width: 200px;
     }
 }
