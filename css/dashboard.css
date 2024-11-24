@@ -140,68 +140,58 @@ form button:hover {
     text-transform: uppercase;
 }
 
-/* Botões de Ações na Tabela */
+.table tbody td {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 15px;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+.table tbody img {
+    border-radius: 5px;
+    max-width: 80px;
+    height: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table tbody .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Espaçamento entre os botões */
+}
+
 .table tbody .btn {
     font-size: 12px;
-    padding: 8px 15px;
+    padding: 5px 10px;
     border-radius: 5px;
-    margin: 0 5px;
-    display: inline-block;
-    transition: all 0.3s ease;
 }
 
 .table tbody .btn-danger {
-    background: linear-gradient(200deg, #9e2521, #dc3545);
-    border: none;
-    color: white;
-    box-shadow: none;
-    outline: none;
     transition: background-color 0.3s ease, transform 0.2s;
+    box-shadow: none !important; /* Remove qualquer sombra */
+    outline: none; /* Remove contornos */
+    background: #dc3545; /* Cor padrão */
 }
 
 .table tbody .btn-danger:hover {
-    background-color: #c82333;
-    transform: scale(1.1);
+    transform: scale(1.05);
+    box-shadow: none !important;
 }
 
 .table tbody .btn-primary {
-    background: #007bff;
+    background-color: #007bff;
     border: none;
     color: white;
     transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .table tbody .btn-primary:hover {
-    background-color: #0056b3;
-    transform: scale(1.1);
-}
-
-/* Centralização e Harmonia */
-.table tbody td {
-    text-align: center;
-    vertical-align: middle;
-}
-
-.table tbody td img {
-    margin-bottom: 10px;
-    max-width: 80px;
-    border-radius: 5px;
-}
-
-/* Remoção de Fundo Extra */
-.table tbody .btn-danger,
-.table tbody .btn-primary {
-    background-clip: padding-box; /* Remove qualquer fundo adicional */
-}
-
-/* Rodapé */
-.footer {
-    background: linear-gradient(200deg, #3b261b, #a85f38);
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    margin-top: 40px;
-    border-top: 3px solid #56342b;
+    transform: scale(1.05);
 }
 
 /* Responsividade */
