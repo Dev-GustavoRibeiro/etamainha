@@ -159,6 +159,22 @@ form button:hover {
 
 .table tbody .btn-danger {
     background: linear-gradient(200deg, #9e2521, #dc3545);
+    border: none; /* Remove a borda */
+    color: white;
+    box-shadow: none; /* Remove qualquer sombra que possa estar causando o efeito de borda */
+    outline: none; /* Remove o contorno ao focar */
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.table tbody .btn-danger:hover {
+    background-color: #c82333; /* Tom mais escuro no hover */
+    transform: scale(1.1); /* Leve aumento no hover */
+    box-shadow: none; /* Garante que não haja sombra ao passar o mouse */
+    outline: none; /* Garante que o contorno continue ausente no hover */
+}
+
+.table tbody .btn-danger {
+    background: linear-gradient(200deg, #9e2521, #dc3545);
     border: none;
     color: white;
 }
