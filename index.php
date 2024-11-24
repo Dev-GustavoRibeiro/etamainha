@@ -58,11 +58,11 @@ session_start();
     </div>
 </div>
 
-<main class="container my-4">
+<main class="container my-4 d-flex justify-content-center align-items-center flex-column">
     <div class="row">
         <!-- Carrossel -->
-        <div class="col-md-6">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="col-md-6 mb-4 d-flex justify-content-center">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
                 <!-- Indicadores -->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -128,6 +128,7 @@ session_start();
         </div>
     </div>
 </main>
+
 
 <footer class="footer">
     <div>© <?= date("Y"); ?> Eita Mainha Confeitaria. Todos os direitos reservados.</div>
