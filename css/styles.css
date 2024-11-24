@@ -67,41 +67,27 @@ header {
     max-height: 40px;
 }
 
+/* Menu Lateral */
 .side-menu {
     position: fixed;
     top: 0;
-    left: -300px; /* Fora da tela inicialmente */
-    width: 300px;
+    left: -300px;
+    width: 283px;
     height: 100%;
-    background: #3b261b;
+    background: linear-gradient(200deg, #3b261b, #a85f38);
     color: white;
+    transition: left 0.4s ease, box-shadow 0.4s ease;
+    padding: 20px;
     z-index: 1000;
-    transition: left 0.4s ease; /* Suaviza a animação */
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .side-menu.active {
-    left: 0; /* Move o menu para dentro da tela */
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.menu-button {
-    font-size: 1.2rem;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 2000;
+    left: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
 /* Botão "X" */
@@ -161,6 +147,32 @@ header {
 .menu-links a:hover::before {
     opacity: 1;
     transform: translateX(5px);
+}
+
+/* Redes Sociais no Rodapé */
+.social-footer {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-icons a:hover img {
+    transform: scale(1.3);
+    filter: drop-shadow(2px 2px 8px rgba(240, 165, 0, 0.8));
 }
 
 /* Redes Sociais no Rodapé */
