@@ -57,7 +57,6 @@ session_start();
         </div>
     </div>
 </div>
-<button id="menu-button" class="menu-button">☰ MENU</button>
 
 
 <main class="container my-4 d-flex justify-content-center align-items-center flex-column">
