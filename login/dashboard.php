@@ -361,13 +361,16 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
                 <td><?= htmlspecialchars($produto['categoria']) ?></td>
                 <td><?= htmlspecialchars($produto['descricao']) ?></td> <!-- Exibindo a descrição -->
                 <td>
-                    <a href="?edit_id=<?= $produto['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
-                    <form method="POST" class="d-inline">
-                        <input type="hidden" name="acao" value="excluir">
-                        <input type="hidden" name="id" value="<?= $produto['id'] ?>">
-                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                    </form>
+                    <div class="btn-container">
+                        <a href="?edit_id=<?= $produto['id'] ?>" class="btn btn-primary">Editar</a>
+                        <form method="POST" class="d-inline">
+                            <input type="hidden" name="acao" value="excluir">
+                            <input type="hidden" name="id" value="<?= $produto['id'] ?>">
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+                    </div>
                 </td>
+
             </tr>
         <?php endwhile; ?>
     </tbody>
