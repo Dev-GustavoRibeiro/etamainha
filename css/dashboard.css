@@ -168,11 +168,6 @@ form button:hover {
     transform: scale(1.1); /* Leve aumento no hover */
 }
 
-.table tbody .btn-primary {
-    background-color: #007bff;
-    border: none;
-    color: white;
-}
 
 .table tbody .btn-primary:hover {
     background-color: #0056b3; /* Tom mais escuro no hover */
