@@ -56,24 +56,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imagem_url = filter_var($_POST['imagem_url'], FILTER_VALIDATE_URL);
         } elseif (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
             $imagem_nome = uniqid() . '_' . basename($_FILES['imagem']['name']);
-            $imagem_caminho = '../uploads/' . $imagem_nome;
+            $upload_dir = '../uploads/';
+            $imagem_caminho = $upload_dir . $imagem_nome;
         
-            // Verifique se o diretório existe, caso contrário, crie-o
-            if (!is_dir('../uploads')) {
-                if (!mkdir('../uploads', 0755, true)) {
+            // Verifique se o diretório de upload existe
+            if (!is_dir($upload_dir)) {
+                if (!mkdir($upload_dir, 0755, true)) {
                     $message = 'Erro ao criar o diretório de upload.';
                     $message_type = 'danger';
                 }
             }
         
-            // Tente mover o arquivo
-            if (is_writable('../uploads') && move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem_caminho)) {
-                $imagem_url = $imagem_caminho;
+            // Verifique se o diretório é gravável
+            if (is_writable($upload_dir)) {
+                if (move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem_caminho)) {
+                    $imagem_url = $imagem_caminho;
+                } else {
+                    $message = 'Erro ao mover o arquivo para o diretório de upload.';
+                    $message_type = 'danger';
+                    $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
+                }
             } else {
-                $message = 'Erro ao fazer o upload do arquivo. Verifique as permissões.';
+                $message = 'O diretório de upload não é gravável.';
                 $message_type = 'danger';
+                $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
             }
+        } elseif (!empty($_POST['imagem_url'])) {
+            // Caso o usuário insira um URL de imagem diretamente
+            $imagem_url = filter_var($_POST['imagem_url'], FILTER_VALIDATE_URL);
+        } else {
+            // Nenhuma imagem fornecida, use uma imagem padrão
+            $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
         }
+        
 
         $stmt = $conn->prepare("INSERT INTO produtos (nome, preco, imagem_url, descricao, categoria_id) VALUES (?, ?, ?, ?, ?)");
         if ($stmt) {
@@ -96,24 +111,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
             $imagem_nome = uniqid() . '_' . basename($_FILES['imagem']['name']);
-            $imagem_caminho = '../uploads/' . $imagem_nome;
+            $upload_dir = '../uploads/';
+            $imagem_caminho = $upload_dir . $imagem_nome;
         
-            // Verifique se o diretório existe, caso contrário, crie-o
-            if (!is_dir('../uploads')) {
-                if (!mkdir('../uploads', 0755, true)) {
+            // Verifique se o diretório de upload existe
+            if (!is_dir($upload_dir)) {
+                if (!mkdir($upload_dir, 0755, true)) {
                     $message = 'Erro ao criar o diretório de upload.';
                     $message_type = 'danger';
                 }
             }
         
-            // Tente mover o arquivo
-            if (is_writable('../uploads') && move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem_caminho)) {
-                $imagem_url = $imagem_caminho;
+            // Verifique se o diretório é gravável
+            if (is_writable($upload_dir)) {
+                if (move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem_caminho)) {
+                    $imagem_url = $imagem_caminho;
+                } else {
+                    $message = 'Erro ao mover o arquivo para o diretório de upload.';
+                    $message_type = 'danger';
+                    $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
+                }
             } else {
-                $message = 'Erro ao fazer o upload do arquivo. Verifique as permissões.';
+                $message = 'O diretório de upload não é gravável.';
                 $message_type = 'danger';
+                $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
             }
+        } elseif (!empty($_POST['imagem_url'])) {
+            // Caso o usuário insira um URL de imagem diretamente
+            $imagem_url = filter_var($_POST['imagem_url'], FILTER_VALIDATE_URL);
+        } else {
+            // Nenhuma imagem fornecida, use uma imagem padrão
+            $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
         }
+        
         
 
         $stmt = $conn->prepare("UPDATE produtos SET nome = ?, preco = ?, imagem_url = ?, descricao = ?, categoria_id = ? WHERE id = ?");
