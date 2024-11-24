@@ -207,7 +207,8 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
     <title>Dashboard - Gerenciar Funcionários e Produtos</title>
     <link rel="icon" href="../icons/icon-logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/dashboard.css?v=<?= time(); ?>">
+
 </head>
 <body>
     <header class="header d-flex justify-content-between align-items-center">
