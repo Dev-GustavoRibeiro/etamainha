@@ -68,6 +68,11 @@ session_start();
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="7" aria-label="Slide 8"></button>
                 </div>
 
                 <!-- Slides -->
@@ -79,7 +84,22 @@ session_start();
                         <img src="images/doces1.jpeg" class="d-block w-100" alt="Doces">
                     </div>
                     <div class="carousel-item">
+                        <img src="images/doces2.jpeg" class="d-block w-100" alt="Doces">
+                    </div>
+                    <div class="carousel-item">
                         <img src="images/bolo1.jpeg" class="d-block w-100" alt="Bolos">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/bolo2.jpeg" class="d-block w-100" alt="Bolos">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/bolo4.jpeg" class="d-block w-100" alt="Bolos">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/bolo5.jpeg" class="d-block w-100" alt="Bolos">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/funcionario1.png" class="d-block w-100" alt="Equipe">
                     </div>
                 </div>
 
