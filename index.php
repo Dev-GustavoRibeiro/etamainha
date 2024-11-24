@@ -1,3 +1,8 @@
+<?php
+// Início do arquivo PHP
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,53 +12,51 @@
     <link rel="icon" href="icons/icon-logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    
 </head>
 <body>
 
-    <header class="header">
-        <div class="container d-flex justify-content-between align-items-center">
-            <button id="menu-button" class="menu-button">☰ MENU</button>
-            <div class="logo text-center">
-                <a href="index.php">
-                    <img src="images/logo.jpeg" alt="Logo Eita Mainha">
-                </a>
-            </div>
-            <div class="icons d-flex align-items-center">
-                <a href="login/login.php" class="icon" aria-label="Login">
-                    <img src="icons/usuário.png" alt="Ícone de usuário">
-                </a>
-
-                <a href="pages/cart.php" class="icon" aria-label="Carrinho">
-                    <img src="icons/carrinho-de-compras.png" alt="Ícone de carrinho">
-                </a>
-            </div>
+<header class="header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <button id="menu-button" class="menu-button">☰ MENU</button>
+        <div class="logo text-center">
+            <a href="index.php">
+                <img src="images/logo.jpeg" alt="Logo Eita Mainha">
+            </a>
         </div>
-    </header>
+        <div class="icons d-flex align-items-center">
+            <a href="login/login.php" class="icon" aria-label="Login">
+                <img src="icons/usuário.png" alt="Ícone de usuário">
+            </a>
 
-
-    <div id="side-menu" class="side-menu">
-    <button class="close-button">&times;</button>
-    <div>
-            <h3>Categorias</h3>
-            <ul class="menu-links">
-                <li><a href="pages/bolos.php">Bolos</a></li>
-                <li><a href="pages/doces.php">Doces</a></li>
-                <li><a href="pages/salgados.php">Salgados</a></li>
-                <li><a href="pages/kit_festas.php">Kit Festas</a></li>
-                <li><a href="pages/bebidas.php">Bebidas</a></li>
-            </ul>
-        </div>
-        <div class="social-footer">
-            <div class="social-icons">
-                <a href="https://facebook.com/EitaMainha" target="_blank"><img src="icons/facebook.png" alt="Facebook"></a>
-                <a href="https://instagram.com/eitamainha_" target="_blank"><img src="icons/instagram.png" alt="Instagram"></a>
-                <a href="https://wa.me/75992191260" target="_blank"><img src="icons/whatsapp.png" alt="WhatsApp"></a>
-                <a href="https://www.ifood.com.br/delivery/eita-mainha" target="_blank"><img src="icons/ifood.png" alt="iFood"></a>
-                <a href="mailto:contato@eitamainha.com" target="_blank"><img src="icons/e-mail.png" alt="E-mail"></a>
-            </div>
+            <a href="pages/cart.php" class="icon" aria-label="Carrinho">
+                <img src="icons/carrinho-de-compras.png" alt="Ícone de carrinho">
+            </a>
         </div>
     </div>
+</header>
+
+<div id="side-menu" class="side-menu">
+    <button class="close-button">&times;</button>
+    <div>
+        <h3>Categorias</h3>
+        <ul class="menu-links">
+            <li><a href="pages/bolos.php">Bolos</a></li>
+            <li><a href="pages/doces.php">Doces</a></li>
+            <li><a href="pages/salgados.php">Salgados</a></li>
+            <li><a href="pages/kit_festas.php">Kit Festas</a></li>
+            <li><a href="pages/bebidas.php">Bebidas</a></li>
+        </ul>
+    </div>
+    <div class="social-footer">
+        <div class="social-icons">
+            <a href="https://facebook.com/EitaMainha" target="_blank"><img src="icons/facebook.png" alt="Facebook"></a>
+            <a href="https://instagram.com/eitamainha_" target="_blank"><img src="icons/instagram.png" alt="Instagram"></a>
+            <a href="https://wa.me/75992191260" target="_blank"><img src="icons/whatsapp.png" alt="WhatsApp"></a>
+            <a href="https://www.ifood.com.br/delivery/eita-mainha" target="_blank"><img src="icons/ifood.png" alt="iFood"></a>
+            <a href="mailto:contato@eitamainha.com" target="_blank"><img src="icons/e-mail.png" alt="E-mail"></a>
+        </div>
+    </div>
+</div>
 
 <main class="container my-4">
     <div class="row">
@@ -96,7 +99,7 @@
         <div class="col-md-6 d-flex flex-column justify-content-center">
             <h2 class="text-center">Sobre Nós</h2>
             <p class="text-justify">
-                A Eita Mainha Confeitaria é sinônimo de qualidade e sabor, oferecendo produtos artesanais com um toque especial desde 2021. 
+                A Eita Mainha Confeitaria é sinônimo de qualidade e sabor, oferecendo produtos artesanais com um toque especial desde 2021.
                 Nossa equipe é dedicada a entregar o melhor em cada criação, seja para o seu dia a dia ou para momentos especiais.
             </p>
             <p class="text-justify">
@@ -106,34 +109,30 @@
     </div>
 </main>
 
+<footer class="footer">
+    <div>© <?= date("Y"); ?> Eita Mainha Confeitaria. Todos os direitos reservados.</div>
+</footer>
 
+<script>
+    var myCarousel = document.querySelector('#carouselExample');
+    var carousel = new bootstrap.Carousel(myCarousel, {
+        interval: 2000, // Tempo entre os slides (2 segundos)
+        wrap: true,     // Habilita o loop
+        ride: 'carousel' // Ativa o carrossel automaticamente
+    });
 
+    const menuButton = document.getElementById('menu-button');
+    const sideMenu = document.getElementById('side-menu');
+    const closeButton = document.querySelector('.close-button');
 
-    <footer class="footer">
-        <div>© 2024 Eita Mainha Confeitaria. Todos os direitos reservados.</div>
-    </footer>
+    menuButton.addEventListener('click', () => {
+        sideMenu.classList.toggle('active');
+    });
 
-
-    <script>
-
-        var myCarousel = document.querySelector('#carouselExample');
-        var carousel = new bootstrap.Carousel(myCarousel, {
-            interval: 2000, // Tempo entre os slides (2 segundos)
-            wrap: true,     // Habilita o loop
-            ride: 'carousel' // Ativa o carrossel automaticamente
-        });     
-        const menuButton = document.getElementById('menu-button');
-        const sideMenu = document.getElementById('side-menu');
-        const closeButton = document.querySelector('.close-button');
-
-        menuButton.addEventListener('click', () => {
-            sideMenu.classList.toggle('active');
-        });
-
-        closeButton.addEventListener('click', () => {
-            sideMenu.classList.remove('active');
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    closeButton.addEventListener('click', () => {
+        sideMenu.classList.remove('active');
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
