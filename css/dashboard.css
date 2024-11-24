@@ -179,10 +179,6 @@ form button:hover {
     color: white;
 }
 
-.table tbody .btn-danger:hover {
-    background-color: #c82333; /* Tom mais escuro no hover */
-    transform: scale(1.1); /* Leve aumento no hover */
-}
 
 
 .table tbody .btn-primary:hover {
