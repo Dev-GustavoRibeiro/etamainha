@@ -65,7 +65,7 @@ $carrinho = $_SESSION['carrinho'];
     </div>
     </header>
 
-    <div class="container my-4">
+    <div class="table-container">
         <?php if (empty($carrinho)): ?>
             <h2 class="text-center">Seu carrinho está vazio.</h2>
         <?php else: ?>
