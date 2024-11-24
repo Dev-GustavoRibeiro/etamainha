@@ -270,11 +270,12 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
             </div>
         </form>
 
+<!-- Barra de pesquisa -->
 <div class="mb-4">
     <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar produtos...">
 </div>
 
-
+<!-- Tabela de produtos -->
 <table class="table table-bordered" id="productTable">
     <thead>
         <tr>
@@ -282,6 +283,7 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
             <th>Nome</th>
             <th>Preço</th>
             <th>Categoria</th>
+            <th>Descrição</th> <!-- Nova coluna para a descrição -->
             <th>Ações</th>
         </tr>
     </thead>
@@ -298,6 +300,7 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
                 <td><?= htmlspecialchars($produto['nome']) ?></td>
                 <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
                 <td><?= htmlspecialchars($produto['categoria']) ?></td>
+                <td><?= htmlspecialchars($produto['descricao']) ?></td> <!-- Exibindo a descrição -->
                 <td>
                     <a href="?edit_id=<?= $produto['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
                     <form method="POST" class="d-inline">
@@ -312,18 +315,23 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
 </table>
 
 <script>
-
+    // Filtro de pesquisa em tempo real
     document.getElementById('searchInput').addEventListener('input', function() {
         const filter = this.value.toLowerCase();
         const rows = document.querySelectorAll('#productTable tbody tr');
         
         rows.forEach(row => {
-
+            // Verifica se o texto digitado está no nome, categoria ou descrição
             const productName = row.cells[1].textContent.toLowerCase();
             const productCategory = row.cells[3].textContent.toLowerCase();
+            const productDescription = row.cells[4].textContent.toLowerCase();
             
-
-            if (productName.includes(filter) || productCategory.includes(filter)) {
+            // Exibe ou oculta a linha com base no filtro
+            if (
+                productName.includes(filter) || 
+                productCategory.includes(filter) || 
+                productDescription.includes(filter)
+            ) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';
@@ -331,6 +339,7 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
         });
     });
 </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
