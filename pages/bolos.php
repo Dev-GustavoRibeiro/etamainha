@@ -97,9 +97,7 @@ if (isset($_SESSION['carrinho'])) {
         </div>
     </div>
 
-    <section class="catalog container my-4">
-    <h1 class="text-center">Bolos</h1>
-    <div class="row">
+
     <section class="catalog container my-4">
     <h1 class="text-center">Bolos</h1>
     <div class="row">
