@@ -67,27 +67,31 @@ header {
     max-height: 40px;
 }
 
-/* Menu Lateral */
 .side-menu {
     position: fixed;
     top: 0;
-    left: -300px;
+    left: -300px; /* Posição inicial fora da tela */
     width: 283px;
     height: 100%;
-    background: linear-gradient(200deg, #3b261b, #a85f38);
+    background-color: #3b261b;
     color: white;
-    transition: left 0.4s ease, box-shadow 0.4s ease;
-    padding: 20px;
     z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+    transition: left 0.3s ease-in-out;
 }
 
 .side-menu.active {
-    left: 0;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    left: 0; /* Move o menu para dentro da tela */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 /* Botão "X" */
