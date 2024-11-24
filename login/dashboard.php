@@ -81,11 +81,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $imagem_url = $_POST['imagem_url'];
 
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-            $imagem_nome = uniqid() . '_' . $_FILES['imagem']['name'];
+            $imagem_nome = uniqid() . '_' . basename($_FILES['imagem']['name']);
             $imagem_caminho = '../uploads/' . $imagem_nome;
-            move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem_caminho);
-            $imagem_url = $imagem_caminho;
+        
+            // Verifique se o diretório existe, caso contrário, crie-o
+            if (!is_dir('../uploads')) {
+                if (!mkdir('../uploads', 0755, true)) {
+                    $message = 'Erro ao criar o diretório de upload.';
+                    $message_type = 'danger';
+                }
+            }
+        
+            // Tente mover o arquivo
+            if (is_writable('../uploads') && move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem_caminho)) {
+                $imagem_url = $imagem_caminho;
+            } else {
+                $message = 'Erro ao fazer o upload do arquivo. Verifique as permissões.';
+                $message_type = 'danger';
+            }
         }
+        
 
         $stmt = $conn->prepare("UPDATE produtos SET nome = ?, preco = ?, imagem_url = ?, descricao = ?, categoria_id = ? WHERE id = ?");
         if ($stmt) {
