@@ -135,6 +135,21 @@ session_start();
 </footer>
 
 <script>
+    
+    const menuButton = document.getElementById('menu-button');
+    const sideMenu = document.getElementById('side-menu');
+    const closeButton = document.querySelector('.close-button');
+    
+    // Exibir o menu lateral
+    menuButton.addEventListener('click', () => {
+        sideMenu.classList.toggle('active'); // Alterna a classe 'active'
+    });
+    
+    // Fechar o menu lateral
+    closeButton.addEventListener('click', () => {
+        sideMenu.classList.remove('active'); // Remove a classe 'active'
+    });
+
     var myCarousel = document.querySelector('#carouselExample');
     var carousel = new bootstrap.Carousel(myCarousel, {
         interval: 2000, // Tempo entre os slides (2 segundos)
@@ -142,16 +157,6 @@ session_start();
         ride: 'carousel' // Ativa o carrossel automaticamente
     });
 
-    const menuButton = document.getElementById('menu-button');
-    const sideMenu = document.getElementById('side-menu');
-    const closeButton = document.querySelector('.close-button');
-
-    menuButton.addEventListener('click', () => {
-        sideMenu.classList.toggle('active');
-    });
-
-    closeButton.addEventListener('click', () => {
-        sideMenu.classList.remove('active');
     });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
