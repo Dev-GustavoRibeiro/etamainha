@@ -231,6 +231,7 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
 
 
         <h2 class="text-center">Gerenciar Produtos</h2>
+        
         <form method="POST" enctype="multipart/form-data" class="mb-4">
             <input type="hidden" name="acao" value="<?= $edit_mode ? 'editar' : 'adicionar' ?>">
             <?php if ($edit_mode): ?>
@@ -269,43 +270,67 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
             </div>
         </form>
 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Imagem</th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Categoria</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($produto = $produtos->fetch_assoc()): ?>
-                    <tr>
-                        <td>
-                            <?php if (!empty($produto['imagem_url'])): ?>
-                                <img src="<?= htmlspecialchars($produto['imagem_url']) ?>" alt="<?= htmlspecialchars($produto['nome']) ?>" width="80">
-                            <?php else: ?>
-                                <img src="../images/default-image.jpg" alt="Imagem padrão" width="80">
-                            <?php endif; ?>
-                        </td>
-                        <td><?= htmlspecialchars($produto['nome']) ?></td>
-                        <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
-                        <td><?= htmlspecialchars($produto['categoria']) ?></td>
-                        <td>
-                            <a href="?edit_id=<?= $produto['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
-                            <form method="POST" class="d-inline">
-                                <input type="hidden" name="acao" value="excluir">
-                                <input type="hidden" name="id" value="<?= $produto['id'] ?>">
-                                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
+<div class="mb-4">
+    <input type="text" id="searchInput" class="form-control" placeholder="Pesquisar produtos...">
+</div>
 
+
+<table class="table table-bordered" id="productTable">
+    <thead>
+        <tr>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php while ($produto = $produtos->fetch_assoc()): ?>
+            <tr>
+                <td>
+                    <?php if (!empty($produto['imagem_url'])): ?>
+                        <img src="<?= htmlspecialchars($produto['imagem_url']) ?>" alt="<?= htmlspecialchars($produto['nome']) ?>" width="80">
+                    <?php else: ?>
+                        <img src="../images/default-image.jpg" alt="Imagem padrão" width="80">
+                    <?php endif; ?>
+                </td>
+                <td><?= htmlspecialchars($produto['nome']) ?></td>
+                <td>R$ <?= number_format($produto['preco'], 2, ',', '.') ?></td>
+                <td><?= htmlspecialchars($produto['categoria']) ?></td>
+                <td>
+                    <a href="?edit_id=<?= $produto['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
+                    <form method="POST" class="d-inline">
+                        <input type="hidden" name="acao" value="excluir">
+                        <input type="hidden" name="id" value="<?= $produto['id'] ?>">
+                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        <?php endwhile; ?>
+    </tbody>
+</table>
+
+<script>
+
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const filter = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#productTable tbody tr');
+        
+        rows.forEach(row => {
+
+            const productName = row.cells[1].textContent.toLowerCase();
+            const productCategory = row.cells[3].textContent.toLowerCase();
+            
+
+            if (productName.includes(filter) || productCategory.includes(filter)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
