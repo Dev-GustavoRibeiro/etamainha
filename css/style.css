@@ -22,7 +22,7 @@ main {
 /* Cabeçalho */
 .header {
     background: linear-gradient(200deg, #3b261b, #a85f38);
-    padding: 10px 15px;
+    padding: 0px 0px;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -58,7 +58,7 @@ main {
 }
 
 .header .icons img {
-    max-height: 30px;
+    max-height: 40px;
 }
 
 /* Menu Lateral */
@@ -235,6 +235,12 @@ form button:hover {
     color: linear-gradient(200deg, #3b261b, #a85f38);
 }
 
+.card-text.text-muted {
+    font-size: 14px;
+    color: #6c757d; /* Cor cinza clara */
+    margin-bottom: 10px;
+}
+
 /* Rodapé */
 .footer {
     background: linear-gradient(200deg, #3b261b, #a85f38);
@@ -247,7 +253,7 @@ form button:hover {
 /* Responsividade */
 @media (max-width: 480px) {
     .header .logo img {
-        max-height: 80px;
+        max-height: 40px;
     }
 
     .header .icons img {
