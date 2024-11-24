@@ -55,83 +55,28 @@
         </div>
     </div>
 
-
-    
-
-
-    <main class="container my-4">
-    <div class="row align-items-center">
-        <div class="col-md-8 offset-md-2">
+<main class="container my-4">
+    <div class="row">
+        <!-- Carrossel -->
+        <div class="col-md-6">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <!-- Indicadores -->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="5" aria-label="Slide 6"></button>
-                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="6" aria-label="Slide 7"></button>
-                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="7" aria-label="Slide 8"></button>
                 </div>
 
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="images/funcionario2.jpeg" class="d-block w-100" alt="Equipe">
-                        <div class="carousel-caption">
-                            <h5>Equipe Dedicada</h5>
-                            <p>Trabalhando para entregar o melhor para você.</p>
-                        </div>
                     </div>
                     <div class="carousel-item">
                         <img src="images/doces1.jpeg" class="d-block w-100" alt="Doces">
-                        <div class="carousel-caption">
-                            <h5>Doces Irresistíveis</h5>
-                            <p>Sabores que encantam todos os paladares.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/doces2.jpeg" class="d-block w-100" alt="Doces">
-                        <div class="carousel-caption">
-                            <h5>Variedade de Doces</h5>
-                            <p>Escolha o que combina com você!</p>
-                        </div>
                     </div>
                     <div class="carousel-item">
                         <img src="images/bolo1.jpeg" class="d-block w-100" alt="Bolos">
-                        <div class="carousel-caption">
-                            <h5>Bolos Artísticos</h5>
-                            <p>Feitos com amor e criatividade.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/bolo2.jpeg" class="d-block w-100" alt="Bolos">
-                        <div class="carousel-caption">
-                            <h5>Bolos Personalizados</h5>
-                            <p>Do jeito que você sempre sonhou.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/bolo4.jpeg" class="d-block w-100" alt="Bolos">
-                        <div class="carousel-caption">
-                            <h5>Bolos Especiais</h5>
-                            <p>Perfeitos para celebrar momentos únicos.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/bolo5.jpeg" class="d-block w-100" alt="Bolos">
-                        <div class="carousel-caption">
-                            <h5>Bolos Deliciosos</h5>
-                            <p>Um sabor que deixa memórias inesquecíveis.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/funcionario1.png" class="d-block w-100" alt="Equipe">
-                        <div class="carousel-caption">
-                            <h5>Atendimento de Qualidade</h5>
-                            <p>Sempre prontos para ajudar você.</p>
-                        </div>
                     </div>
                 </div>
 
@@ -146,18 +91,20 @@
                 </button>
             </div>
         </div>
+
+        <!-- Sobre Nós -->
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+            <h2 class="text-center">Sobre Nós</h2>
+            <p class="text-justify">
+                A Eita Mainha Confeitaria é sinônimo de qualidade e sabor, oferecendo produtos artesanais com um toque especial desde 2021. 
+                Nossa equipe é dedicada a entregar o melhor em cada criação, seja para o seu dia a dia ou para momentos especiais.
+            </p>
+            <p class="text-justify">
+                Com receitas tradicionais e inovadoras, buscamos encantar nossos clientes a cada mordida. Seja bem-vindo à nossa confeitaria!
+            </p>
+        </div>
     </div>
 </main>
-
-
-
-            <div class="col-md-5">
-                <h2>Sobre Nós</h2>
-                <p>A Eita Mainha Confeitaria é sinônimo de qualidade e sabor, oferecendo produtos artesanais com um toque especial desde 2021. Nossa equipe é dedicada a entregar o melhor em cada criação, seja para o seu dia a dia ou para momentos especiais.</p>
-                <p>Com receitas tradicionais e inovadoras, buscamos encantar nossos clientes a cada mordida. Seja bem-vindo à nossa confeitaria!</p>
-            </div>
-        </div>
-    </main>
 
 
     <footer class="footer">
