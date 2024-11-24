@@ -76,7 +76,23 @@
                         <img src="images/doces1.jpeg" class="d-block w-100" alt="Doces">
                     </div>
                     <div class="carousel-item">
+                        <img src="images/doces2.jpeg" class="d-block w-100" alt="Doces">
+                    </div>
+                    <div class="carousel-item">
                         <img src="images/bolo1.jpeg" class="d-block w-100" alt="Bolos">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/bolo2.jpeg" class="d-block w-100" alt="Bolos">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/bolo4.jpeg" class="d-block w-100" alt="Bolos">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/bolo5.jpeg" class="d-block w-100" alt="Bolos">
+
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/funcionario1.png" class="d-block w-100" alt="Equipe">
                     </div>
                 </div>
 
