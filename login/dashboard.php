@@ -157,7 +157,7 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
             <img src="../images/logo.jpeg" alt="Logo da Empresa" style="height: 100px;">
         </a>
         <h1 class="text-center flex-grow-1">Dashboard</h1>
-        <a href="login.php" class="btn btn-danger">Sair</a>
+        <a href="logout.php" class="btn btn-danger">Sair</a>
     </header>
 
     <div class="container my-4">
