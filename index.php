@@ -65,6 +65,10 @@
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="6" aria-label="Slide 7"></button>
                 </div>
 
                 <!-- Slides -->
@@ -89,7 +93,6 @@
                     </div>
                     <div class="carousel-item">
                         <img src="images/bolo5.jpeg" class="d-block w-100" alt="Bolos">
-
                     </div>
                     <div class="carousel-item">
                         <img src="images/funcionario1.png" class="d-block w-100" alt="Equipe">
@@ -123,12 +126,20 @@
 </main>
 
 
+
     <footer class="footer">
         <div>© 2024 Eita Mainha Confeitaria. Todos os direitos reservados.</div>
     </footer>
 
 
     <script>
+
+            var myCarousel = document.querySelector('#carouselExample');
+    var carousel = new bootstrap.Carousel(myCarousel, {
+        interval: 2000, // Tempo entre os slides (em ms)
+        wrap: true // Ativa o loop infinito
+    });
+        
         const menuButton = document.getElementById('menu-button');
         const sideMenu = document.getElementById('side-menu');
         const closeButton = document.querySelector('.close-button');
