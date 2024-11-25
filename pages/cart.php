@@ -3,35 +3,46 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
     $produtoId = $_POST['produto_id'] ?? null;
-    $nome = $_POST['nome'] ?? null;
-    $preco = $_POST['preco'] ?? null;
-    $imagem_url = $_POST['imagem_url'] ?? null;
 
-    // Verifique se todos os dados estão presentes
-    if ($_POST['acao'] === 'adicionar' && $produtoId && $nome && $preco && $imagem_url) {
-        // Inicialize o carrinho, se não existir
-        if (!isset($_SESSION['carrinho'])) {
-            $_SESSION['carrinho'] = [];
-        }
+    // Verifique se o produto ID é válido
+    if ($produtoId) {
+        if ($_POST['acao'] === 'adicionar') {
+            // Inicialize o carrinho, se não existir
+            if (!isset($_SESSION['carrinho'])) {
+                $_SESSION['carrinho'] = [];
+            }
 
-        // Se o produto já existe no carrinho, aumente a quantidade
-        if (isset($_SESSION['carrinho'][$produtoId])) {
-            $_SESSION['carrinho'][$produtoId]['quantidade']++;
-        } else {
-            // Adiciona o novo produto ao carrinho
-            $_SESSION['carrinho'][$produtoId] = [
-                'nome' => $nome,
-                'preco' => $preco,
-                'imagem_url' => $imagem_url,
-                'quantidade' => 1,
-            ];
+            // Se o produto já existe no carrinho, aumente a quantidade
+            if (isset($_SESSION['carrinho'][$produtoId])) {
+                $_SESSION['carrinho'][$produtoId]['quantidade']++;
+            } else {
+                // Adiciona o novo produto ao carrinho
+                $_SESSION['carrinho'][$produtoId] = [
+                    'nome' => $_POST['nome'] ?? 'Produto',
+                    'preco' => $_POST['preco'] ?? 0,
+                    'imagem_url' => $_POST['imagem_url'] ?? '',
+                    'quantidade' => 1,
+                ];
+            }
+
+            // Redirecione de volta para a página de bolos
+            header('Location: bolos.php');
+            exit;
+        } elseif ($_POST['acao'] === 'remover') {
+            // Remover o produto do carrinho
+            if (isset($_SESSION['carrinho'][$produtoId])) {
+                unset($_SESSION['carrinho'][$produtoId]);
+            }
+        } elseif ($_POST['acao'] === 'atualizar') {
+            // Atualizar a quantidade do produto
+            $quantidade = max(1, (int) ($_POST['quantidade'] ?? 1));
+            if (isset($_SESSION['carrinho'][$produtoId])) {
+                $_SESSION['carrinho'][$produtoId]['quantidade'] = $quantidade;
+            }
         }
 
         // Redirecione de volta para evitar reenvio do formulário
-        header('Location: bolos.php');
-        exit;
-    } else {
-        echo "Dados incompletos para adicionar o produto ao carrinho.";
+        header('Location: cart.php');
         exit;
     }
 }
@@ -39,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
 // Carregar o carrinho da sessão
 $carrinho = $_SESSION['carrinho'] ?? [];
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -49,12 +59,12 @@ $carrinho = $_SESSION['carrinho'] ?? [];
     <title>Carrinho de Compras</title>
     <link rel="icon" href="../icons/icon-logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@400;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="../css/cart.css?v=<?= time(); ?>">
 </head>
 <body>
     <header class="header d-flex justify-content-between align-items-center p-3 bg-dark text-white">
-        <h1>Compras</h1>
+        <h1>Compras&#128176</h1>
         <a href="../index.php" class="btn btn-secondary">Voltar para Loja</a>
         <div class="logo text-center">
             <a href="../index.php">
