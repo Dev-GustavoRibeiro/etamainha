@@ -2,37 +2,35 @@
 session_start();
 include '../config/db.php';
 
-$error = ''; // Inicializa variável para mensagens de erro
-
+// Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Recupera os valores enviados pelo formulário
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+    // Recebe os valores enviados pelo formulário
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-    if (!empty($username) && !empty($password)) {
-        // Consulta o banco para verificar o usuário
-        $stmt = $conn->prepare("SELECT * FROM funcionarios WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    // Prepara a consulta para buscar o usuário no banco
+    $stmt = $conn->prepare("SELECT * FROM funcionarios WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            $funcionario = $result->fetch_assoc();
+    if ($result->num_rows > 0) {
+        // Obtém os dados do usuário
+        $funcionario = $result->fetch_assoc();
 
-            // Compara a senha diretamente ou usando password_verify (se armazenada com hash)
-            if ($password === $funcionario['password']) { // Altere para password_verify se usar hash
-                // Login bem-sucedido
-                $_SESSION['employee_id'] = $funcionario['id'];
-                header('Location: dashboard.php');
-                exit(); // Evita execução de código após redirecionar
-            } else {
-                $error = "Senha incorreta.";
-            }
+        // Verifica se a senha fornecida corresponde à armazenada no banco
+        if ($password === $funcionario['password']) {
+            // Login bem-sucedido
+            $_SESSION['employee_id'] = $funcionario['id'];
+            header('Location: dashboard.php');
+            exit();
         } else {
-            $error = "Usuário não encontrado.";
+            // Senha incorreta
+            $error = "Senha incorreta. Tente novamente.";
         }
     } else {
-        $error = "Por favor, preencha todos os campos.";
+        // Usuário não encontrado
+        $error = "Usuário não encontrado.";
     }
 }
 ?>
@@ -74,8 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
 
-        <!-- Exibe mensagem de erro, se existir -->
-        <?php if (!empty($error)): ?>
+        <?php if (isset($error)): ?>
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
     </div>
