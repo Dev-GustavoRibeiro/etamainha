@@ -8,7 +8,7 @@
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #f8f9fa;
+    background: url('../images/fundo-textura.jpg') no-repeat center center fixed;
     color: #333;
     display: flex;
     flex-direction: column;
