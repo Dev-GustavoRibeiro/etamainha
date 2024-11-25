@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@400;700&display=swap');
 /* Reset Básico */
 * {
     margin: 0;
@@ -6,7 +7,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Parkinsans', sans-serif;
     line-height: 1.6;
     background: url('../images/fundo-textura.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -17,13 +18,33 @@ body {
     margin: 0;
 }
 
+.h1{
+    font-family: 'Parkinsans', sans-serif;
+}
+
 main {
     flex: 1;
+}
+.page-title {
+    font-size: 1.8rem; /* Tamanho ajustado */
+    font-weight: bold; /* Negrito para destaque */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    background: linear-gradient(200deg, #3b261b, #a85f38); /* Gradiente de fundo */
+    border-radius: 8px; /* Bordas arredondadas */
+    text-align: center; /* Centraliza o texto dentro do elemento */
+    display: inline-block; /* Ajusta o fundo ao tamanho do texto */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+    margin: 20px auto; /* Centraliza horizontalmente e dá espaçamento vertical */
+    position: relative; /* Para evitar conflitos de posicionamento */
+    left: 50%; /* Empurra o elemento para o meio */
+    transform: translateX(-50%); /* Corrige o deslocamento do `left` */
 }
 
 /* Cabeçalho */
 .header {
     background: linear-gradient(200deg, #3b261b, #a85f38);
+    font-family: 'Parkinsans', sans-serif;
     padding: 10px 0;
     position: sticky;
     top: 0;
@@ -32,7 +53,7 @@ main {
     justify-content: center;
     align-items: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    height: 120px;
+    height: 100px;
 }
 
 .header .logo {
