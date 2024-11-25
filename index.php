@@ -17,19 +17,22 @@ session_start();
 
 <header class="header">
     <div class="container d-flex justify-content-between align-items-center">
-        <button id="menu-button" class="menu-button">☰ MENU</button>
+        <button class="menu-button" id="menu-toggle">☰ MENU</button>
         <div class="logo text-center">
-            <a href="index.php">
+            <a href="../index.php">
                 <img src="images/logo.jpeg" alt="Logo Eita Mainha">
             </a>
         </div>
         <div class="icons d-flex align-items-center">
-            <a href="login/login.php" class="icon" aria-label="Login">
-                <img src="icons/usuário.png" alt="Ícone de usuário">
-            </a>
-
-            <a href="pages/cart.php" class="icon" aria-label="Carrinho">
+            <a href="login/login.php" class="icon" aria-label="Login"><img src="icons/usuário.png" alt="Ícone de usuário"></a>
+            <a href="#" id="search-icon" class="icon" aria-label="Busca"><img src="icons/pesquisar.png" alt="Ícone de busca"></a>
+            <a href="cart.php" class="icon position-relative" aria-label="Carrinho">
                 <img src="icons/carrinho-de-compras.png" alt="Ícone de carrinho">
+                <?php if ($totalItensCarrinho > 0): ?>
+                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                        <?= $totalItensCarrinho ?>
+                    </span>
+                <?php endif; ?>
             </a>
         </div>
     </div>
