@@ -2,28 +2,37 @@
 session_start();
 include '../config/db.php';
 
+$error = ''; // Inicializa variável para mensagens de erro
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Recupera os valores enviados pelo formulário
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
 
-    $employee_query = "SELECT id, password FROM funcionarios WHERE username = ?";
-    $stmt = $conn->prepare($employee_query);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    if (!empty($username) && !empty($password)) {
+        // Consulta o banco para verificar o usuário
+        $stmt = $conn->prepare("SELECT * FROM funcionarios WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
+        if ($result->num_rows > 0) {
+            $funcionario = $result->fetch_assoc();
 
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['employee_id'] = $user['id'];
-            header("Location: dashboard.php");
-            exit;
+            // Compara a senha diretamente ou usando password_verify (se armazenada com hash)
+            if ($password === $funcionario['password']) { // Altere para password_verify se usar hash
+                // Login bem-sucedido
+                $_SESSION['employee_id'] = $funcionario['id'];
+                header('Location: dashboard.php');
+                exit(); // Evita execução de código após redirecionar
+            } else {
+                $error = "Senha incorreta.";
+            }
         } else {
-            $error = "Senha incorreta.";
+            $error = "Usuário não encontrado.";
         }
     } else {
-        $error = "Usuário não encontrado.";
+        $error = "Por favor, preencha todos os campos.";
     }
 }
 ?>
@@ -65,7 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </form>
 
-        <?php if (isset($error)): ?>
+        <!-- Exibe mensagem de erro, se existir -->
+        <?php if (!empty($error)): ?>
             <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
     </div>
