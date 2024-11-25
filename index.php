@@ -8,27 +8,29 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Êta Mainha - Sobre Nós</title>
+    <title>Eita Mainha - Sobre Nós</title>
     <link rel="icon" href="icons/icon-logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css?v=<?= time(); ?>">
 </head>
 <body>
 
 <header class="header">
     <div class="container d-flex justify-content-between align-items-center">
-        <button id="menu-toggle" class="menu-button">☰ MENU</button>
+        <button id="menu-button" class="menu-button"><i class="bx bx-menu"></i></button>
         <div class="logo text-center">
-            <a href="../index.php">
-                <img src="../images/logo.jpeg" alt="Logo Eita Mainha">
+            <a href="index.php">
+                <img src="images/logo.jpeg" alt="Logo Eita Mainha">
             </a>
         </div>
         <div class="icons d-flex align-items-center">
-            <a href="../login/login.php" class="icon" aria-label="Login"><img src="../icons/usuário.png" alt="Ícone de usuário"></a>
-            <a href="cart.php" class="icon position-relative" aria-label="Carrinho">
-                <img src="../icons/carrinho-de-compras.png" alt="Ícone de carrinho">
+            <a href="login/login.php" class="icon" aria-label="Login">
+                <img src="icons/usuário.png" alt="Ícone de usuário">
+            </a>
+            <a href="pages/cart.php" class="icon" aria-label="Carrinho">
+                <img src="icons/carrinho-de-compras.png" alt="Ícone de carrinho">
             </a>
         </div>
     </div>
@@ -164,28 +166,29 @@ session_start();
 </footer>
 
 <script>
-    const menuToggle = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    const closeButton = document.getElementById('close-button');
-    const searchIcon = document.getElementById('search-icon');
-    const searchBar = document.getElementById('search-bar');
+    document.addEventListener("DOMContentLoaded", () => {
+        const menuButton = document.getElementById("menu-button");
+        const sidebar = document.getElementById("sidebar");
+        const closeButton = document.getElementById("close-button");
 
-    menuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
-    });
+        if (menuButton && sidebar) {
+            menuButton.addEventListener("click", () => {
+                sidebar.classList.add("active");
+            });
 
-    closeButton.addEventListener('click', () => {
-        sidebar.classList.remove('active');
-    });
+            if (closeButton) {
+                closeButton.addEventListener("click", () => {
+                    sidebar.classList.remove("active");
+                });
+            }
 
-    searchIcon.addEventListener('click', (e) => {
-        e.preventDefault();
-        searchBar.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
-            sidebar.classList.remove('active');
+            document.addEventListener("click", (event) => {
+                if (!sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+                    sidebar.classList.remove("active");
+                }
+            });
+        } else {
+            console.error("Menu Button ou Sidebar não encontrado.");
         }
     });
 </script>
