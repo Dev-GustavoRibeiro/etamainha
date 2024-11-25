@@ -29,11 +29,6 @@ session_start();
             <a href="../login/login.php" class="icon" aria-label="Login"><img src="../icons/usuário.png" alt="Ícone de usuário"></a>
             <a href="cart.php" class="icon position-relative" aria-label="Carrinho">
                 <img src="../icons/carrinho-de-compras.png" alt="Ícone de carrinho">
-                <?php if ($totalItensCarrinho > 0): ?>
-                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
-                        <?= $totalItensCarrinho ?>
-                    </span>
-                <?php endif; ?>
             </a>
         </div>
     </div>
