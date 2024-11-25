@@ -11,27 +11,24 @@ session_start();
     <title>Eita Mainha - Sobre Nós</title>
     <link rel="icon" href="icons/icon-logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
 <header class="header">
     <div class="container d-flex justify-content-between align-items-center">
-        <button class="menu-button" id="menu-toggle">☰ MENU</button>
+        <button id="menu-button" class="menu-button">☰ MENU</button>
         <div class="logo text-center">
-            <a href="../index.php">
+            <a href="index.php">
                 <img src="images/logo.jpeg" alt="Logo Eita Mainha">
             </a>
         </div>
         <div class="icons d-flex align-items-center">
-            <a href="login/login.php" class="icon" aria-label="Login"><img src="icons/usuário.png" alt="Ícone de usuário"></a>
-            <a href="cart.php" class="icon position-relative" aria-label="Carrinho">
+            <a href="login/login.php" class="icon" aria-label="Login">
+                <img src="icons/usuário.png" alt="Ícone de usuário">
+            </a>
+            <a href="pages/cart.php" class="icon" aria-label="Carrinho">
                 <img src="icons/carrinho-de-compras.png" alt="Ícone de carrinho">
-                <?php if ($totalItensCarrinho > 0): ?>
-                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
-                        <?= $totalItensCarrinho ?>
-                    </span>
-                <?php endif; ?>
             </a>
         </div>
     </div>
