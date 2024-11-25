@@ -11,13 +11,15 @@ session_start();
     <title>Eita Mainha - Sobre Nós</title>
     <link rel="icon" href="icons/icon-logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=<?= time(); ?>">
 </head>
 <body>
 
 <header class="header">
     <div class="container d-flex justify-content-between align-items-center">
-        <button id="menu-button" class="menu-button">☰ MENU</button>
+        <button id="menu-button" class="menu-button"><i class="bx bx-menu"></i></button>
         <div class="logo text-center">
             <a href="index.php">
                 <img src="images/logo.jpeg" alt="Logo Eita Mainha">
@@ -27,7 +29,6 @@ session_start();
             <a href="login/login.php" class="icon" aria-label="Login">
                 <img src="icons/usuário.png" alt="Ícone de usuário">
             </a>
-
             <a href="pages/cart.php" class="icon" aria-label="Carrinho">
                 <img src="icons/carrinho-de-compras.png" alt="Ícone de carrinho">
             </a>
@@ -35,18 +36,47 @@ session_start();
     </div>
 </header>
 
-<div id="side-menu" class="side-menu">
-    <button class="close-button">&times;</button>
-    <div>
-        <h3>Categorias</h3>
-        <ul class="menu-links">
-            <li><a href="pages/bolos.php">Bolos</a></li>
-            <li><a href="pages/doces.php">Doces</a></li>
-            <li><a href="pages/salgados.php">Salgados</a></li>
-            <li><a href="pages/kit_festas.php">Kit Festas</a></li>
-            <li><a href="pages/bebidas.php">Bebidas</a></li>
-        </ul>
+<!-- Novo Menu Lateral -->
+<div class="sidebar" id="sidebar">
+    <div class="logo_content">
+        <div class="logo">
+            <i class="bx bx-cake"></i>
+            <span class="logo_name">Êta Mainha</span>
+        </div>
+        <i class="bx bx-x close-button" id="close-button"></i>
     </div>
+    <ul class="nav_list">
+        <li>
+            <a href="pages/bolos.php">
+                <i class="bx bx-cake"></i>
+                <span class="links_name">Bolos</span>
+            </a>
+        </li>
+        <li>
+            <a href="pages/doces.php">
+                <i class="bx bx-cookie"></i>
+                <span class="links_name">Doces</span>
+            </a>
+        </li>
+        <li>
+            <a href="pages/salgados.php">
+                <i class="bx bx-dish"></i>
+                <span class="links_name">Salgados</span>
+            </a>
+        </li>
+        <li>
+            <a href="pages/kit_festas.php">
+                <i class="bx bx-party"></i>
+                <span class="links_name">Kit Festas</span>
+            </a>
+        </li>
+        <li>
+            <a href="pages/bebidas.php">
+                <i class="bx bx-drink"></i>
+                <span class="links_name">Bebidas</span>
+            </a>
+        </li>
+    </ul>
     <div class="social-footer">
         <div class="social-icons">
             <a href="https://facebook.com/EitaMainha" target="_blank"><img src="icons/facebook.png" alt="Facebook"></a>
@@ -57,6 +87,11 @@ session_start();
         </div>
     </div>
 </div>
+
+
+</div>
+
+
 
 <main class="container my-4 d-flex justify-content-center align-items-center flex-column">
     <div class="row">
@@ -102,8 +137,6 @@ session_start();
                         <img src="images/funcionario1.png" class="d-block w-100" alt="Equipe">
                     </div>
                 </div>
-
-                <!-- Controles -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Anterior</span>
@@ -114,7 +147,6 @@ session_start();
                 </button>
             </div>
         </div>
-
         <!-- Sobre Nós -->
         <div class="col-md-6 d-flex flex-column justify-content-center">
             <h2 class="text-center">Sobre Nós</h2>
@@ -129,35 +161,38 @@ session_start();
     </div>
 </main>
 
-
 <footer class="footer">
     <div>© <?= date("Y"); ?> Eita Mainha Confeitaria. Todos os direitos reservados.</div>
 </footer>
 
 <script>
-    
-    const menuButton = document.getElementById('menu-button');
-    const sideMenu = document.getElementById('side-menu');
-    const closeButton = document.querySelector('.close-button');
-    
-    // Exibir o menu lateral
-    menuButton.addEventListener('click', () => {
-        sideMenu.classList.toggle('active'); // Alterna a classe 'active'
-    });
-    
-    // Fechar o menu lateral
-    closeButton.addEventListener('click', () => {
-        sideMenu.classList.remove('active'); // Remove a classe 'active'
-    });
+    document.addEventListener("DOMContentLoaded", () => {
+        const menuButton = document.getElementById("menu-button");
+        const sidebar = document.getElementById("sidebar");
+        const closeButton = document.getElementById("close-button");
 
-    var myCarousel = document.querySelector('#carouselExample');
-    var carousel = new bootstrap.Carousel(myCarousel, {
-        interval: 2000, // Tempo entre os slides (2 segundos)
-        wrap: true,     // Habilita o loop
-        ride: 'carousel' // Ativa o carrossel automaticamente
-    });
+        if (menuButton && sidebar) {
+            menuButton.addEventListener("click", () => {
+                sidebar.classList.add("active");
+            });
 
+            if (closeButton) {
+                closeButton.addEventListener("click", () => {
+                    sidebar.classList.remove("active");
+                });
+            }
+
+            document.addEventListener("click", (event) => {
+                if (!sidebar.contains(event.target) && !menuButton.contains(event.target)) {
+                    sidebar.classList.remove("active");
+                }
+            });
+        } else {
+            console.error("Menu Button ou Sidebar não encontrado.");
+        }
+    });
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
