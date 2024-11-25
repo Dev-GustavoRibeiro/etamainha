@@ -1,47 +1,45 @@
 <?php
 session_start();
 
-
-if (!isset($_SESSION['carrinho'])) {
-    $_SESSION['carrinho'] = [];
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $acao = $_POST['acao'] ?? null;
-    $produto_id = $_POST['produto_id'] ?? null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['acao'])) {
+    $produtoId = $_POST['produto_id'] ?? null;
     $nome = $_POST['nome'] ?? null;
     $preco = $_POST['preco'] ?? null;
     $imagem_url = $_POST['imagem_url'] ?? null;
 
-    if ($acao === 'adicionar' && $produto_id && $nome && $preco && $imagem_url) {
-        if (!isset($_SESSION['carrinho'][$produto_id])) {
-            $_SESSION['carrinho'][$produto_id] = [
-                'id' => $produto_id,
+    // Verifique se todos os dados estão presentes
+    if ($_POST['acao'] === 'adicionar' && $produtoId && $nome && $preco && $imagem_url) {
+        // Inicialize o carrinho, se não existir
+        if (!isset($_SESSION['carrinho'])) {
+            $_SESSION['carrinho'] = [];
+        }
+
+        // Se o produto já existe no carrinho, aumente a quantidade
+        if (isset($_SESSION['carrinho'][$produtoId])) {
+            $_SESSION['carrinho'][$produtoId]['quantidade']++;
+        } else {
+            // Adiciona o novo produto ao carrinho
+            $_SESSION['carrinho'][$produtoId] = [
                 'nome' => $nome,
                 'preco' => $preco,
                 'imagem_url' => $imagem_url,
                 'quantidade' => 1,
             ];
-        } else {
-            $_SESSION['carrinho'][$produto_id]['quantidade']++;
         }
 
-        header("Location: bolos.php");
+        // Redirecione de volta para evitar reenvio do formulário
+        header('Location: bolos.php');
         exit;
-    } elseif ($acao === 'atualizar' && $produto_id) {
-        $quantidade = max(1, (int)($_POST['quantidade'] ?? 1));
-        if (isset($_SESSION['carrinho'][$produto_id])) {
-            $_SESSION['carrinho'][$produto_id]['quantidade'] = $quantidade;
-        }
-    } elseif ($acao === 'remover' && $produto_id) {
-        unset($_SESSION['carrinho'][$produto_id]);
+    } else {
+        echo "Dados incompletos para adicionar o produto ao carrinho.";
+        exit;
     }
 }
 
-
-$carrinho = $_SESSION['carrinho'];
+// Carregar o carrinho da sessão
+$carrinho = $_SESSION['carrinho'] ?? [];
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -51,22 +49,22 @@ $carrinho = $_SESSION['carrinho'];
     <title>Carrinho de Compras</title>
     <link rel="icon" href="../icons/icon-logo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="stylesheet" href="../css/cart.css?v=<?= time(); ?>">
 </head>
 <body>
     <header class="header d-flex justify-content-between align-items-center p-3 bg-dark text-white">
         <h1>Compras</h1>
         <a href="../index.php" class="btn btn-secondary">Voltar para Loja</a>
-    <div class="logo text-center">
-        <a href="../index.php">
-            <img src="../images/logo.jpeg" alt="Logo Eita Mainha">
-        </a>
-    </div>
+        <div class="logo text-center">
+            <a href="../index.php">
+                <img src="../images/logo.jpeg" alt="Logo Eita Mainha">
+            </a>
+        </div>
     </header>
 
-    <div class="table-container">
+    <div class="container my-4">
         <?php if (empty($carrinho)): ?>
-            <h2 class="text-center">Seu carrinho está vazio.</h2>
+            <h2 class="page-title">Seu carrinho está vazio &#128557</h2>
         <?php else: ?>
             <table class="table table-bordered">
                 <thead>
@@ -81,7 +79,7 @@ $carrinho = $_SESSION['carrinho'];
                 </thead>
                 <tbody>
                     <?php $total_geral = 0; ?>
-                    <?php foreach ($carrinho as $item): ?>
+                    <?php foreach ($carrinho as $produtoId => $item): ?>
                         <?php $total = $item['preco'] * $item['quantidade']; ?>
                         <?php $total_geral += $total; ?>
                         <tr>
@@ -91,7 +89,7 @@ $carrinho = $_SESSION['carrinho'];
                             <td>
                                 <form method="POST" class="d-inline">
                                     <input type="hidden" name="acao" value="atualizar">
-                                    <input type="hidden" name="produto_id" value="<?= $item['id'] ?>">
+                                    <input type="hidden" name="produto_id" value="<?= $produtoId ?>">
                                     <input type="number" name="quantidade" value="<?= $item['quantidade'] ?>" min="1" class="form-control w-50 d-inline">
                                     <button type="submit" class="btn btn-primary btn-sm">Atualizar</button>
                                 </form>
@@ -100,7 +98,7 @@ $carrinho = $_SESSION['carrinho'];
                             <td>
                                 <form method="POST" class="d-inline">
                                     <input type="hidden" name="acao" value="remover">
-                                    <input type="hidden" name="produto_id" value="<?= $item['id'] ?>">
+                                    <input type="hidden" name="produto_id" value="<?= $produtoId ?>">
                                     <button type="submit" class="btn btn-danger btn-sm">Remover</button>
                                 </form>
                             </td>
