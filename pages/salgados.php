@@ -147,8 +147,12 @@ if (isset($_SESSION['carrinho'])) {
                 echo '<form method="POST" action="cart.php">';
                 echo '<input type="hidden" name="acao" value="adicionar">';
                 echo '<input type="hidden" name="produto_id" value="' . $row['id'] . '">';
+                echo '<input type="hidden" name="nome" value="' . htmlspecialchars($row['nome']) . '">';
+                echo '<input type="hidden" name="preco" value="' . htmlspecialchars($row['preco']) . '">';
+                echo '<input type="hidden" name="imagem_url" value="' . htmlspecialchars($row['imagem_url']) . '">';
                 echo '<button type="submit" class="btn btn-dark">Adicionar ao Carrinho</button>';
                 echo '</form>';
+            
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
@@ -159,7 +163,6 @@ if (isset($_SESSION['carrinho'])) {
         ?>
     </div>
 </section>
-
 <footer class="footer">
     <div>© 2024 Eita Mainha Confeitaria. Todos os direitos reservados.</div>
 </footer>
