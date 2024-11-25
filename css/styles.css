@@ -31,6 +31,14 @@ main {
     height: calc(100vh - 120px); /* Calcula o espaço restante sem o cabeçalho e rodapé */
 }
 
+.row {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 /* Cabeçalho */
 .header {
     background: linear-gradient(200deg, #3b261b, #a85f38);
@@ -183,11 +191,9 @@ header {
 
 /* Carrossel */
 .carousel {
-    margin-bottom: 30px;
-    position: relative;
-    border-radius: 10px; /* Adiciona bordas arredondadas */
-    overflow: hidden; /* Garante que imagens e legendas não escapem */
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Sombra ao redor do carrossel */
+    max-height: 400px;
+    width: 45%;
+    margin-right: 20px;
 }
 
 .carousel-inner {
@@ -317,15 +323,13 @@ header {
 }
 
 /* Rodapé */
-.footer {
+footer {
     background: linear-gradient(200deg, #3b261b, #a85f38);
     color: white;
     text-align: center;
-    padding: 15px 0;
-    position: relative;
-    bottom: 0;
+    padding: 10px;
     width: 100%;
-    margin-top: auto;
+    position: relative;
 }
 
 /* Responsividade */
