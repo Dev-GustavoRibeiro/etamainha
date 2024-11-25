@@ -19,7 +19,7 @@ session_start();
 
 <header class="header">
     <div class="container d-flex justify-content-between align-items-center">
-        <button id="menu-Button" class="menu-button">☰ MENU</button>
+        <button id="menu-toggle" class="menu-button">☰ MENU</button>
         <div class="logo text-center">
             <a href="../index.php">
                 <img src="../images/logo.jpeg" alt="Logo Eita Mainha">
@@ -164,29 +164,28 @@ session_start();
 </footer>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const menuButton = document.getElementById("menu-button");
-        const sidebar = document.getElementById("sidebar");
-        const closeButton = document.getElementById("close-button");
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const closeButton = document.getElementById('close-button');
+    const searchIcon = document.getElementById('search-icon');
+    const searchBar = document.getElementById('search-bar');
 
-        if (menuButton && sidebar) {
-            menuButton.addEventListener("click", () => {
-                sidebar.classList.add("active");
-            });
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+    });
 
-            if (closeButton) {
-                closeButton.addEventListener("click", () => {
-                    sidebar.classList.remove("active");
-                });
-            }
+    closeButton.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+    });
 
-            document.addEventListener("click", (event) => {
-                if (!sidebar.contains(event.target) && !menuButton.contains(event.target)) {
-                    sidebar.classList.remove("active");
-                }
-            });
-        } else {
-            console.error("Menu Button ou Sidebar não encontrado.");
+    searchIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+        searchBar.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+            sidebar.classList.remove('active');
         }
     });
 </script>
