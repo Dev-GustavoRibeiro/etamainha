@@ -19,7 +19,7 @@ session_start();
 
 <header class="header">
     <div class="container d-flex justify-content-between align-items-center">
-        <button id="menu-button" class="menu-button"><i class="bx bx-menu"></i></button>
+        <button id="menu-button" class="menu-button"><i class="bx bx-menu MENU"></i></button>
         <div class="logo text-center">
             <a href="index.php">
                 <img src="images/logo.jpeg" alt="Logo Eita Mainha">
