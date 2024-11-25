@@ -137,22 +137,32 @@ session_start();
 
 <script>
     
-document.addEventListener("DOMContentLoaded", () => {
-    const menuButton = document.getElementById('menu-button');
-    const sideMenu = document.getElementById('side-menu');
-    const closeButton = document.querySelector('.close-button');
-
-    if (menuButton && sideMenu && closeButton) {
-        // Exibir o menu lateral ao clicar no botão
-        menuButton.addEventListener('click', () => {
-            sideMenu.classList.add('active'); // Adiciona a classe 'active' para exibir o menu
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuButton = document.getElementById("menu-button");
+            const sideMenu = document.getElementById("side-menu");
+            const closeButton = document.querySelector(".close-button");
+        
+            if (menuButton && sideMenu && closeButton) {
+                // Abrir o menu lateral
+                menuButton.addEventListener("click", () => {
+                    sideMenu.classList.toggle("active");
+                });
+        
+                // Fechar o menu lateral
+                closeButton.addEventListener("click", () => {
+                    sideMenu.classList.remove("active");
+                });
+        
+                // Fechar ao clicar fora do menu (opcional)
+                document.addEventListener("click", (event) => {
+                    if (!sideMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                        sideMenu.classList.remove("active");
+                    }
+                });
+            } else {
+                console.error("Menu Button, Side Menu ou Close Button não encontrado.");
+            }
         });
-
-        // Fechar o menu lateral ao clicar no botão de fechar
-        closeButton.addEventListener('click', () => {
-            sideMenu.classList.remove('active'); // Remove a classe 'active' para ocultar o menu
-        });
-
         // Fechar o menu lateral ao clicar fora dele (opcional)
         document.addEventListener('click', (event) => {
             if (!sideMenu.contains(event.target) && !menuButton.contains(event.target)) {
