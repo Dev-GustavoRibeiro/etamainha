@@ -1,13 +1,11 @@
 <?php
 include '../config/db.php';
 
-
 session_start();
 if (!isset($_SESSION['employee_id'])) {
     header('Location: login.php'); 
     exit();
 }
-
 
 $edit_mode = false;
 $edit_id = null;
@@ -17,12 +15,10 @@ $edit_descricao = '';
 $edit_categoria_id = '';
 $edit_imagem_url = '';
 
-
 $message = '';
 $message_type = '';
 
-
-
+// Processo de edição de produtos
 if (isset($_GET['edit_id'])) {
     $edit_mode = true;
     $edit_id = $_GET['edit_id'];
@@ -41,7 +37,7 @@ if (isset($_GET['edit_id'])) {
     }
 }
 
-
+// Tratamento das ações enviadas via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $acao = $_POST['acao'];
 
@@ -50,45 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $preco = $_POST['preco'];
         $descricao = $_POST['descricao'];
         $categoria_id = $_POST['categoria_id'];
-        $imagem_url = null;
-
-        if (!empty($_POST['imagem_url'])) {
-            $imagem_url = filter_var($_POST['imagem_url'], FILTER_VALIDATE_URL);
-        } elseif (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-            $imagem_nome = uniqid() . '_' . basename($_FILES['imagem']['name']);
-            $upload_dir = '../uploads/';
-            $imagem_caminho = $upload_dir . $imagem_nome;
-        
-            // Verifique se o diretório de upload existe
-            if (!is_dir($upload_dir)) {
-                if (!mkdir($upload_dir, 0755, true)) {
-                    $message = 'Erro ao criar o diretório de upload.';
-                    $message_type = 'danger';
-                }
-            }
-        
-            // Verifique se o diretório é gravável
-            if (is_writable($upload_dir)) {
-                if (move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem_caminho)) {
-                    $imagem_url = $imagem_caminho;
-                } else {
-                    $message = 'Erro ao mover o arquivo para o diretório de upload.';
-                    $message_type = 'danger';
-                    $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
-                }
-            } else {
-                $message = 'O diretório de upload não é gravável.';
-                $message_type = 'danger';
-                $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
-            }
-        } elseif (!empty($_POST['imagem_url'])) {
-            // Caso o usuário insira um URL de imagem diretamente
-            $imagem_url = filter_var($_POST['imagem_url'], FILTER_VALIDATE_URL);
-        } else {
-            // Nenhuma imagem fornecida, use uma imagem padrão
-            $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
-        }
-        
+        $imagem_url = !empty($_POST['imagem_url']) ? filter_var($_POST['imagem_url'], FILTER_VALIDATE_URL) : '../uploads/default-image.jpg';
 
         $stmt = $conn->prepare("INSERT INTO produtos (nome, preco, imagem_url, descricao, categoria_id) VALUES (?, ?, ?, ?, ?)");
         if ($stmt) {
@@ -108,43 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $descricao = $_POST['descricao'];
         $categoria_id = $_POST['categoria_id'];
         $imagem_url = $_POST['imagem_url'];
-
-        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-            $imagem_nome = uniqid() . '_' . basename($_FILES['imagem']['name']);
-            $upload_dir = '../uploads/';
-            $imagem_caminho = $upload_dir . $imagem_nome;
-        
-            // Verifique se o diretório de upload existe
-            if (!is_dir($upload_dir)) {
-                if (!mkdir($upload_dir, 0755, true)) {
-                    $message = 'Erro ao criar o diretório de upload.';
-                    $message_type = 'danger';
-                }
-            }
-        
-            // Verifique se o diretório é gravável
-            if (is_writable($upload_dir)) {
-                if (move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem_caminho)) {
-                    $imagem_url = $imagem_caminho;
-                } else {
-                    $message = 'Erro ao mover o arquivo para o diretório de upload.';
-                    $message_type = 'danger';
-                    $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
-                }
-            } else {
-                $message = 'O diretório de upload não é gravável.';
-                $message_type = 'danger';
-                $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
-            }
-        } elseif (!empty($_POST['imagem_url'])) {
-            // Caso o usuário insira um URL de imagem diretamente
-            $imagem_url = filter_var($_POST['imagem_url'], FILTER_VALIDATE_URL);
-        } else {
-            // Nenhuma imagem fornecida, use uma imagem padrão
-            $imagem_url = '../uploads/default-image.jpg'; // Caminho para uma imagem padrão
-        }
-        
-        
 
         $stmt = $conn->prepare("UPDATE produtos SET nome = ?, preco = ?, imagem_url = ?, descricao = ?, categoria_id = ? WHERE id = ?");
         if ($stmt) {
@@ -169,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $message = 'Erro ao excluir produto: ' . $stmt->error;
                 $message_type = 'danger';
             }
-        }
+         }
     } elseif ($acao === 'adicionar_funcionario') { 
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -189,14 +110,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $message_type = 'danger';
             }
         }
+    } elseif ($acao === 'excluir_funcionario') { 
+        $id = $_POST['id'];
+        $stmt = $conn->prepare("DELETE FROM funcionarios WHERE id = ?");
+        if ($stmt) {
+            $stmt->bind_param("i", $id);
+            if ($stmt->execute()) {
+                $message = 'Funcionário excluído com sucesso!';
+                $message_type = 'success';
+            } else {
+                $message = 'Erro ao excluir funcionário: ' . $stmt->error;
+                $message_type = 'danger';
+            }
+        }
     }
 }
 
-
+// Carregamento dos dados
 $produtos = $conn->query("SELECT p.*, c.nome AS categoria FROM produtos p JOIN categorias c ON p.categoria_id = c.id ORDER BY p.id DESC");
 $categorias = $conn->query("SELECT * FROM categorias");
 $funcionarios = $conn->query("SELECT * FROM funcionarios");
 ?>
+
 
 
 <!DOCTYPE html>
@@ -212,14 +147,15 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
 
 </head>
 <body>
-    <header class="header d-flex justify-content-between align-items-center">
 
-        <a href="../index.php">
-            <img src="../images/logo.jpeg" alt="Logo da Empresa" style="height: 100px;">
-        </a>
-        <h1 class="text-center flex-grow-1">Dashboard</h1>
-        <a href="logout.php" class="btn btn-danger">Sair</a>
-    </header>
+        <header class="header">
+            <h1>Dashboard</h1>
+            <a href="../index.php">
+                <img src="../images/logo.jpeg" alt="Logo da Empresa">
+            </a>
+            <a href="logout.php" class="btn btn-danger">Sair</a>
+        </header>
+
 
     <div class="container my-4">
 
@@ -258,7 +194,7 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
             </div>
         </form>
 
-        <h2 class="page-title">Lista de Funcionários</h2>
+        <h3 class="page-title">Lista de Funcionários</h3>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -279,11 +215,11 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
                         <td><?= htmlspecialchars($funcionario['cargo']) ?></td>
                         <td><?= htmlspecialchars($funcionario['data_contratacao']) ?></td>
                         <td>
-                            <form method="POST" class="d-inline">
-                                <input type="hidden" name="acao" value="excluir_funcionario">
-                                <input type="hidden" name="id" value="<?= $funcionario['id'] ?>">
-                                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                            </form>
+                        <form method="POST" class="d-inline">
+                            <input type="hidden" name="acao" value="excluir_funcionario">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($funcionario['id']) ?>">
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -366,10 +302,11 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
                     <div class="btn-container">
                         <a href="?edit_id=<?= $produto['id'] ?>" class="btn btn-primary">Editar</a>
                         <form method="POST" class="d-inline">
-                                    <input type="hidden" name="acao" value="Excluir">
-                                    <input type="hidden" name="produto_id" value="<?= $produtoId ?>">
-                                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                            <input type="hidden" name="acao" value="excluir">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($produto['id']) ?>">
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
                         </form>
+
                     </div>
                 </td>
 
