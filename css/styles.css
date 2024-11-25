@@ -15,7 +15,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
-    overflow: hidden; /* Remove barra de rolagem */
 }
 
 main {
@@ -191,16 +190,11 @@ header {
 
 /* Carrossel */
 .carousel {
-    max-height: 400px;
-    width: 45%;
-    margin-right: 20px;
-}
-
-.carousel-inner {
+    margin-bottom: 30px;
     position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 10px;
+    border-radius: 10px; /* Adiciona bordas arredondadas */
+    overflow: hidden; /* Garante que imagens e legendas não escapem */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Sombra ao redor do carrossel */
 }
 
 .carousel-inner img {
