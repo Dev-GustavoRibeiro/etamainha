@@ -43,16 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         /* Estilização geral */
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
+         body {
+            font-family: Arial, sans-serif;
             background: url('../images/fundo-textura.jpg') no-repeat center center fixed;
             background-size: cover;
-            color: #333;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
             margin: 0;
+            flex-direction: column;
         }
 
         /* Cabeçalho com a logo */
