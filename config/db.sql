@@ -32,9 +32,6 @@ CREATE TABLE IF NOT EXISTS produtos (
     FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE CASCADE
 );
 
--- Insere um usuário administrador somente se não existir
-INSERT IGNORE INTO funcionarios (username, password, nome_completo, email, data_contratacao, cargo)
-VALUES ('admin', 'admin', 'Administrador', 'admin@eitamainha.com', CURDATE(), 'Administrador');
 
 -- População da tabela categorias com as categorias mencionadas
 INSERT IGNORE INTO categorias (nome) VALUES 
