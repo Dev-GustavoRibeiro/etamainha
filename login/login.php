@@ -44,14 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         /* Estilização geral */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: url('../images/fundo-textura.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
             flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
         }
 
         /* Cabeçalho com a logo */
