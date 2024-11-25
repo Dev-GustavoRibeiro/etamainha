@@ -25,7 +25,6 @@ session_start();
         </div>
         <div class="icons d-flex align-items-center">
             <a href="login/login.php" class="icon" aria-label="Login"><img src="icons/usuário.png" alt="Ícone de usuário"></a>
-            <a href="#" id="search-icon" class="icon" aria-label="Busca"><img src="icons/pesquisar.png" alt="Ícone de busca"></a>
             <a href="cart.php" class="icon position-relative" aria-label="Carrinho">
                 <img src="icons/carrinho-de-compras.png" alt="Ícone de carrinho">
                 <?php if ($totalItensCarrinho > 0): ?>
