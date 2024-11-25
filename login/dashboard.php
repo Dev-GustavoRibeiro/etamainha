@@ -258,7 +258,7 @@ $funcionarios = $conn->query("SELECT * FROM funcionarios");
             </div>
         </form>
 
-        <h3 class="page-title">Lista de Funcionários</h3>
+        <h2 class="page-title">Lista de Funcionários</h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
