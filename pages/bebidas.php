@@ -120,14 +120,14 @@ if (isset($_SESSION['carrinho'])) {
 </div>
 
 <section class="catalog container my-4">
-    <h1 class="page-title">Bolos</h1>
+    <h1 class="page-title">Bebidas</h1>
     <div class="row">
         <?php
         $search = $_GET['search'] ?? '';
         $query = "
             SELECT * 
             FROM produtos 
-            WHERE categoria_id = (SELECT id FROM categorias WHERE nome = 'Bolos')
+            WHERE categoria_id = (SELECT id FROM categorias WHERE nome = 'Bebidas')
             AND nome LIKE ?";
         $stmt = $conn->prepare($query);
         $search_param = '%' . $search . '%';
