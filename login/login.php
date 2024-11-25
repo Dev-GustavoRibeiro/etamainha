@@ -2,34 +2,27 @@
 session_start();
 include '../config/db.php';
 
-// Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Recebe os valores enviados pelo formulário
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
-    // Prepara a consulta para buscar o usuário no banco
-    $stmt = $conn->prepare("SELECT * FROM funcionarios WHERE username = ?");
+    $employee_query = "SELECT id, password FROM funcionarios WHERE username = ?";
+    $stmt = $conn->prepare($employee_query);
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
-        // Obtém os dados do usuário
-        $funcionario = $result->fetch_assoc();
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
 
-        // Verifica se a senha fornecida corresponde à armazenada no banco
-        if ($password === $funcionario['password']) {
-            // Login bem-sucedido
-            $_SESSION['employee_id'] = $funcionario['id'];
-            header('Location: dashboard.php');
-            exit();
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['employee_id'] = $user['id'];
+            header("Location: dashboard.php");
+            exit;
         } else {
-            // Senha incorreta
-            $error = "Senha incorreta. Tente novamente.";
+            $error = "Senha incorreta.";
         }
     } else {
-        // Usuário não encontrado
         $error = "Usuário não encontrado.";
     }
 }
