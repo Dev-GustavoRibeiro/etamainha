@@ -65,7 +65,7 @@ main {
 
 .header .logo img {
     max-height: 150px; 
-    filter: drop-shadow(2px 2px 20px white);
+    filter: drop-shadow(2px 2px 20px #daa520);
     height: auto;
     width: auto;
     transition: max-height 0.3s ease;
