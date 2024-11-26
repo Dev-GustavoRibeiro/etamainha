@@ -59,7 +59,7 @@ body {
 .header img {
     height: 150px; /* Ajusta o tamanho da logo */
     margin: 0 auto; /* Centraliza horizontalmente */
-    filter: drop-shadow(2px 2px 20px white);
+    filter: drop-shadow(2px 2px 20px #daa520);
     order: 2; /* Posiciona a logo no centro */
 }
 
