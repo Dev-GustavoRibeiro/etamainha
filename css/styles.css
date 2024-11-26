@@ -64,6 +64,7 @@ header {
 }
 
 .header .logo img {
+    filter: drop-shadow(2px 2px 20px white);
     max-height: 200px;
 }
 
