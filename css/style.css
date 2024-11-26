@@ -59,7 +59,7 @@ main {
 }
 
 .header .logo img {
-    filter: drop-shadow(2px 2px 20px white);
+    filter: drop-shadow(2px 2px 20px #daa520);
     max-height: 200px; /* Aumenta o tamanho da logo */
     width: auto; /* Mantém a proporção da largura */
 }
